@@ -23,7 +23,7 @@ const updateTokenAddress = async (data) => {
 const selectSumOfVoteNumByAddress = async (address) => {
 
 	const sql = `
-		SELECT SUM(vote_num) as sum_of_vote_num FROM token WHERE address = :address
+		SELECT IFNULL(SUM(vote_num), 0) as sum_of_vote_num FROM token WHERE address = :address
 	`
 	const values = {address};
 
