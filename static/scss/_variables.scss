@@ -1,0 +1,49 @@
+
+$white: #FFFFFF;
+$black: #111111;
+$yellow: #F3BE2E;
+
+$grey-light: #A0A0A0;
+$grey-dark: #4B4B4B;
+$grey-normal: #757575;
+$grey-deep: #2C2C2C;
+$background:  #F4F4F3;
+
+$header-default-height: 60px;
+$header-wallet-height: 100px;
+$header-height-extended: $header-default-height + $header-wallet-height;
+
+@font-face{
+    font-family: 'NeoDunggeunmoPro-Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: local('NeoDunggeunmoPro-Regular'), url('/font/NeoDunggeunmoPro-Regular.woff') format('woff');
+}
+
+@mixin flex-center {
+    display: flex;
+        align-items: center;
+        justify-content: space-between;
+}
+
+@mixin flex-column {
+    @include flex-center;
+    flex-direction: column;
+}
+
+@mixin font-pixel {
+    font-family: NeoDunggeunmoPro-Regular, sans-serif;
+}
+
+@mixin font-text {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+@mixin button {
+    cursor: pointer;
+}
+
+
+// @function gap-sizing($size, $gap, $number) {
+// 	@return calc( $size * $number + $gap * $number - $gap );
+// }

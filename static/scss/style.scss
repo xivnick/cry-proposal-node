@@ -1,0 +1,561 @@
+@import 'variables';
+
+
+input, textarea {
+	border: none;
+}
+
+body {
+	@include font-pixel;
+
+	background: $grey-normal;
+}
+
+header {
+	position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 10;
+
+	width: 100%;
+	height: auto;
+
+	background-color: $black;
+
+	#header-default-wrapper {
+		@include flex-center;
+
+		height: $header-default-height;
+
+		padding: 0 100px;
+
+		#logo {
+			margin-right: auto;
+
+			#logo-image {
+				height: 30px;
+			}
+		}
+
+		#wallet-wrapper {
+			@include flex-center;
+
+			margin-right: 40px;
+
+			#wallet-random-color {
+				width: 28px;
+				height: 28px;
+
+				border-radius: 14px;
+
+				margin-right: 10px;
+			}
+
+			#wallet-address {
+				@include font-text;
+
+				font-size: 16px;
+				color: $white;
+			}
+
+			#wallet-button {
+				@include button;
+
+				width: 120px;
+				height: 30px;
+
+				text-align: center;
+				line-height: 32px;
+				font-size: 16px;
+
+				background: $yellow;
+				border-radius: 6px;
+			}
+		}
+
+		#flag-wrapper {
+			@include flex-center;
+
+			width: 90px;
+
+			.flag {
+				width: 36px;
+				height: 24px;
+			}
+		}
+	}
+
+	#header-wallet-data-wrapper {
+		@include flex-column;
+
+		height: $header-wallet-height;
+		padding: 5px 0 25px;
+
+		#total-votes {
+			font-size: 16px;
+			color: $white;
+		}
+		#create-proposal-button {
+			@include button;
+
+			width: 180px;
+			height: 36px;
+
+			text-align: center;
+			font-size: 16px;
+			line-height: 38px;
+
+			background: $grey-light;
+			&.yellow{ background: $yellow };
+
+			border-radius: 10px;
+		}
+	}
+}
+
+#background-wrapper {
+
+	position: fixed;
+
+		z-index: 0;
+
+		width: 100%;
+		height: 100%;
+
+	padding-top: $header-default-height;
+
+	#background{
+		position: absolute;
+			z-index: 0;
+
+		width: 100%;
+		height: 100%;
+
+		background-image: url('/img/main-min.jpg');
+		background-size: cover;
+		background-position: center;		
+	}
+
+	#background-cover{
+		position: absolute;
+			z-index: 1;
+
+		width: 100%;
+		height: 100%;
+
+		background-color: #000;
+		opacity: 0.7;
+	}
+}
+
+main {
+	position: absolute;
+	top: $header-default-height;
+	&.extended { top: $header-height-extended; }
+
+	width: 100%;
+
+	#layer-main {
+		#proposal-wrapper {
+			width: 940px;
+			margin: 50px auto;
+
+			.proposal {
+				@include button;
+
+				position: relative;
+				width: 100%;
+				height: 170px;
+
+				margin-bottom: 20px;
+
+				background: #000000;
+
+				border-radius: 20px;
+
+				&.ONGOING {
+					border: 2px solid $yellow;
+				}
+				&.REFUSED {
+					border: 2px solid $grey-deep;
+				}
+				&.PASS {
+					border: 2px solid $grey-normal;
+				}
+
+				.proposal-dday {
+					position: absolute;
+					width: 64px;
+					height: 30px;
+					left: 40px;
+					top: 40px;
+
+					background: $grey-light;
+					&.yellow { background: $yellow; }
+
+					border-radius: 20px;
+
+					text-align: center;
+					line-height: 32px;
+
+					font-size: 16px;
+				}
+
+				.proposal-dday-closed {
+
+					position: absolute;
+					width: 85px;
+					height: 30px;
+					left: 40px;
+					top: 40px;
+
+					background: $grey-light;
+					&.yellow { background: $yellow; }
+
+					border-radius: 20px;
+
+					text-align: center;
+					line-height: 32px;
+
+					font-size: 16px;
+				}
+
+				.proposal-status {
+					position: absolute;
+						top: 44px;
+						right: 40px;
+
+					font-size: 16px;
+
+					&.ONGOING {
+						color: $yellow;
+					}
+					&.REFUSED {
+						color: $grey-dark;
+					}
+					&.PASS {
+						color: $grey-light;
+					}
+				}
+
+				.proposal-title {
+					position: absolute;
+						bottom: 50px;
+						left: 40px;
+
+					font-size: 20px;
+					color: white;
+				}
+
+				.proposal-schedule {
+					position: absolute;
+						bottom: 50px;
+						right: 40px;
+
+					font-size: 16px;
+					color: white;
+
+				}
+			}
+		}
+	}
+
+	#layer-create-proposal {
+
+		#create-proposal-wrapper {
+			position: relative;
+
+			width: 940px;
+			height: 700px;
+
+			margin: 150px auto;
+
+			background: $background;
+			border-radius: 20px;
+
+			h1 {
+				position: absolute;
+					left: 60px;
+					top: 50px;
+
+				font-size: 32px;
+				color: $grey-normal;
+			}
+
+			.close-button {
+				@include button;
+
+				position: absolute;
+					top: 20px;
+					right: 20px;
+
+				width: 60px;
+				height: 60px;
+			}
+
+			#title {
+				@include font-pixel;
+
+				position: absolute;
+					left: 50px;
+					top: 110px;
+				width: 580px;
+				height: 50px;
+
+				padding: 13px 20px;
+
+				background: $white;
+
+				font-size: 20px;
+				color: $black;
+			}
+
+			#deadline {
+				@include font-pixel;
+
+				text-align: center;
+
+				position: absolute;
+					left: 640px;
+					top: 110px;
+				width: 250px;
+				height: 50px;
+
+				padding: 0 40px;
+
+				font-size: 16px;
+				text-align: right;
+				color: $grey-dark;
+			}
+
+			#content {
+				@include font-text;
+				position: absolute;
+					left: 50px;
+					top: 170px;
+				width: 840px;
+				height: 440px;
+
+				padding: 20px;
+				font-size: 16px;
+
+				resize: none;
+			}
+
+			#create-proposal-address {
+				position: absolute;
+					left: 50px;
+					bottom: 40px;
+			}
+
+			#submit-proposal-button {
+				@include font-pixel;
+
+				position: absolute;
+				width: 200px;
+				height: 40px;
+				right: 50px;
+				bottom: 30px;
+
+				border-radius: 10px;
+
+				background-color: $yellow;
+
+				font-size: 18px;
+				line-height: 40px;
+			}
+		}
+	}
+
+	#layer-proposal-detail {
+		#proposal-detail-wrapper {
+			@include flex-center;
+			width: 940px;
+			height: 600px;
+			margin: 150px auto;
+
+			#proposal-detail-left {
+
+				position: relative;
+
+				width: 640px;
+				height: 100%;
+
+				border-radius: 20px;
+				background: $white;
+				overflow: hidden;
+
+				#proposal-detail-title-wrapper {
+
+					position: relative;
+					
+					width: 100%;
+					height: 130px;
+					background: $background;
+
+					h1 {
+						@include font-pixel;
+
+						position: absolute;
+							top: 40px;
+							left: 40px;
+
+						font-size: 20px;
+						color: $grey-deep;
+					}
+
+					#proposal-detail-address {
+						@include font-pixel;
+
+						position: absolute;
+							bottom: 30px;
+							left: 40px;
+
+
+						font-size: 16px;
+						color: $grey-light;
+						margin-right: 10px;
+					}
+					#proposal-detail-schedule {
+						@include font-pixel;
+
+						position: absolute;
+							bottom: 30px;
+							right: 40px;
+
+						font-size: 16px;
+						color: $grey-normal;
+					}
+				}
+
+				#proposal-detail-text {
+					@include font-text;
+
+					position: absolute;
+						top: 170px;
+						left: 40px;
+
+					width: 560px;
+					
+					font-size: 16px;
+					line-height: 30px;
+					text-align: justify;
+					
+					color: $black;
+				}
+		    }
+
+		    #proposal-detail-right {
+		    	@include flex-column;
+		    		justify-content: start;
+
+		    	position: relative;
+				width: 300px;
+				height: 100%;
+
+				background: $grey-dark;
+
+		      	border-radius: 20px;
+
+				padding-top: 100px;
+
+
+				.close-button {
+					@include button;
+					
+					position: absolute;
+						top: 10px;
+						right: 20px;
+
+					width: 60px;
+					height: 60px;
+				}
+
+				.percent-wrapper {
+					@include flex-center;
+
+					margin-bottom: 10px;
+					padding-right: 8px;
+					width: 220px;
+
+					span{
+						font-size: 16px;
+						color: $grey-light;
+
+						&:first-child{ color: $white; }
+					}
+				}
+
+				.percent-bar-wrapper {
+					width: 220px;
+					height: 15px;
+
+					margin-bottom: 50px;
+
+					background: $grey-deep;
+
+					div{height: 100%;}
+				}
+
+				#proposal-detail-vote-wrapper {
+					@include flex-column;
+						justify-content: start;
+
+					position: absolute;
+						bottom: 0;
+
+					width: 100%;
+					height: 250px;
+
+					background: $black;
+
+					padding-top: 30px;
+
+					.proposal-status {
+
+						font-size: 20px;
+						margin-bottom: 40px;
+
+						&.ONGOING {
+							color: $yellow;
+						}
+						&.REFUSED {
+							color: $grey-dark;
+						}
+						&.PASS {
+							color: $grey-light;
+						}
+					}
+
+					.vote-info {
+						font-size: 16px;
+						color: $grey-light;
+
+						margin-bottom: 10px;
+					}
+
+					#proposal-datail-vote-button-wrapper {
+						@include flex-center;
+
+						width: 220px;
+						margin-top: 20px;
+
+						div {
+							@include button;
+
+							width: 105px;
+							height: 40px;
+
+							border-radius: 10px;
+
+							background: $yellow;
+
+							line-height: 40px;
+							text-align: center;
+						}
+					}
+				}
+			}
+		}
+	}
+}

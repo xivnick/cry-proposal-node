@@ -1,0 +1,442 @@
+@font-face {
+  font-family: "NeoDunggeunmoPro-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: local("NeoDunggeunmoPro-Regular"), url("/font/NeoDunggeunmoPro-Regular.woff") format("woff");
+}
+input, textarea {
+  border: none;
+}
+
+body {
+  font-family: NeoDunggeunmoPro-Regular, sans-serif;
+  background: #757575;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: auto;
+  background-color: #111111;
+}
+header #header-default-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 100px;
+}
+header #header-default-wrapper #logo {
+  margin-right: auto;
+}
+header #header-default-wrapper #logo #logo-image {
+  height: 30px;
+}
+header #header-default-wrapper #wallet-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 40px;
+}
+header #header-default-wrapper #wallet-wrapper #wallet-random-color {
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  margin-right: 10px;
+}
+header #header-default-wrapper #wallet-wrapper #wallet-address {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+header #header-default-wrapper #wallet-wrapper #wallet-button {
+  cursor: pointer;
+  width: 120px;
+  height: 30px;
+  text-align: center;
+  line-height: 32px;
+  font-size: 16px;
+  background: #F3BE2E;
+  border-radius: 6px;
+}
+header #header-default-wrapper #flag-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90px;
+}
+header #header-default-wrapper #flag-wrapper .flag {
+  width: 36px;
+  height: 24px;
+}
+header #header-wallet-data-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100px;
+  padding: 5px 0 25px;
+}
+header #header-wallet-data-wrapper #total-votes {
+  font-size: 16px;
+  color: #FFFFFF;
+}
+header #header-wallet-data-wrapper #create-proposal-button {
+  cursor: pointer;
+  width: 180px;
+  height: 36px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 38px;
+  background: #A0A0A0;
+  border-radius: 10px;
+}
+header #header-wallet-data-wrapper #create-proposal-button.yellow {
+  background: #F3BE2E;
+}
+
+#background-wrapper {
+  position: fixed;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 60px;
+}
+#background-wrapper #background {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/img/main-min.jpg");
+  background-size: cover;
+  background-position: center;
+}
+#background-wrapper #background-cover {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.7;
+}
+
+main {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+}
+main.extended {
+  top: 160px;
+}
+main #layer-main #proposal-wrapper {
+  width: 940px;
+  margin: 50px auto;
+}
+main #layer-main #proposal-wrapper .proposal {
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  height: 170px;
+  margin-bottom: 20px;
+  background: #000000;
+  border-radius: 20px;
+}
+main #layer-main #proposal-wrapper .proposal.ONGOING {
+  border: 2px solid #F3BE2E;
+}
+main #layer-main #proposal-wrapper .proposal.REFUSED {
+  border: 2px solid #2C2C2C;
+}
+main #layer-main #proposal-wrapper .proposal.PASS {
+  border: 2px solid #757575;
+}
+main #layer-main #proposal-wrapper .proposal .proposal-dday {
+  position: absolute;
+  width: 64px;
+  height: 30px;
+  left: 40px;
+  top: 40px;
+  background: #A0A0A0;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 32px;
+  font-size: 16px;
+}
+main #layer-main #proposal-wrapper .proposal .proposal-dday.yellow {
+  background: #F3BE2E;
+}
+main #layer-main #proposal-wrapper .proposal .proposal-dday-closed {
+  position: absolute;
+  width: 85px;
+  height: 30px;
+  left: 40px;
+  top: 40px;
+  background: #A0A0A0;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 32px;
+  font-size: 16px;
+}
+main #layer-main #proposal-wrapper .proposal .proposal-dday-closed.yellow {
+  background: #F3BE2E;
+}
+main #layer-main #proposal-wrapper .proposal .proposal-status {
+  position: absolute;
+  top: 44px;
+  right: 40px;
+  font-size: 16px;
+}
+main #layer-main #proposal-wrapper .proposal .proposal-status.ONGOING {
+  color: #F3BE2E;
+}
+main #layer-main #proposal-wrapper .proposal .proposal-status.REFUSED {
+  color: #4B4B4B;
+}
+main #layer-main #proposal-wrapper .proposal .proposal-status.PASS {
+  color: #A0A0A0;
+}
+main #layer-main #proposal-wrapper .proposal .proposal-title {
+  position: absolute;
+  bottom: 50px;
+  left: 40px;
+  font-size: 20px;
+  color: white;
+}
+main #layer-main #proposal-wrapper .proposal .proposal-schedule {
+  position: absolute;
+  bottom: 50px;
+  right: 40px;
+  font-size: 16px;
+  color: white;
+}
+main #layer-create-proposal #create-proposal-wrapper {
+  position: relative;
+  width: 940px;
+  height: 700px;
+  margin: 150px auto;
+  background: #F4F4F3;
+  border-radius: 20px;
+}
+main #layer-create-proposal #create-proposal-wrapper h1 {
+  position: absolute;
+  left: 60px;
+  top: 50px;
+  font-size: 32px;
+  color: #757575;
+}
+main #layer-create-proposal #create-proposal-wrapper .close-button {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+}
+main #layer-create-proposal #create-proposal-wrapper #title {
+  font-family: NeoDunggeunmoPro-Regular, sans-serif;
+  position: absolute;
+  left: 50px;
+  top: 110px;
+  width: 580px;
+  height: 50px;
+  padding: 13px 20px;
+  background: #FFFFFF;
+  font-size: 20px;
+  color: #111111;
+}
+main #layer-create-proposal #create-proposal-wrapper #deadline {
+  font-family: NeoDunggeunmoPro-Regular, sans-serif;
+  text-align: center;
+  position: absolute;
+  left: 640px;
+  top: 110px;
+  width: 250px;
+  height: 50px;
+  padding: 0 40px;
+  font-size: 16px;
+  text-align: right;
+  color: #4B4B4B;
+}
+main #layer-create-proposal #create-proposal-wrapper #content {
+  font-family: "Noto Sans KR", sans-serif;
+  position: absolute;
+  left: 50px;
+  top: 170px;
+  width: 840px;
+  height: 440px;
+  padding: 20px;
+  font-size: 16px;
+  resize: none;
+}
+main #layer-create-proposal #create-proposal-wrapper #create-proposal-address {
+  position: absolute;
+  left: 50px;
+  bottom: 40px;
+}
+main #layer-create-proposal #create-proposal-wrapper #submit-proposal-button {
+  font-family: NeoDunggeunmoPro-Regular, sans-serif;
+  position: absolute;
+  width: 200px;
+  height: 40px;
+  right: 50px;
+  bottom: 30px;
+  border-radius: 10px;
+  background-color: #F3BE2E;
+  font-size: 18px;
+  line-height: 40px;
+}
+main #layer-proposal-detail #proposal-detail-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 940px;
+  height: 600px;
+  margin: 150px auto;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-left {
+  position: relative;
+  width: 640px;
+  height: 100%;
+  border-radius: 20px;
+  background: #FFFFFF;
+  overflow: hidden;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-left #proposal-detail-title-wrapper {
+  position: relative;
+  width: 100%;
+  height: 130px;
+  background: #F4F4F3;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-left #proposal-detail-title-wrapper h1 {
+  font-family: NeoDunggeunmoPro-Regular, sans-serif;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-size: 20px;
+  color: #2C2C2C;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-left #proposal-detail-title-wrapper #proposal-detail-address {
+  font-family: NeoDunggeunmoPro-Regular, sans-serif;
+  position: absolute;
+  bottom: 30px;
+  left: 40px;
+  font-size: 16px;
+  color: #A0A0A0;
+  margin-right: 10px;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-left #proposal-detail-title-wrapper #proposal-detail-schedule {
+  font-family: NeoDunggeunmoPro-Regular, sans-serif;
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
+  font-size: 16px;
+  color: #757575;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-left #proposal-detail-text {
+  font-family: "Noto Sans KR", sans-serif;
+  position: absolute;
+  top: 170px;
+  left: 40px;
+  width: 560px;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: justify;
+  color: #111111;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  justify-content: start;
+  position: relative;
+  width: 300px;
+  height: 100%;
+  background: #4B4B4B;
+  border-radius: 20px;
+  padding-top: 100px;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right .close-button {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right .percent-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-right: 8px;
+  width: 220px;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right .percent-wrapper span {
+  font-size: 16px;
+  color: #A0A0A0;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right .percent-wrapper span:first-child {
+  color: #FFFFFF;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right .percent-bar-wrapper {
+  width: 220px;
+  height: 15px;
+  margin-bottom: 50px;
+  background: #2C2C2C;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right .percent-bar-wrapper div {
+  height: 100%;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right #proposal-detail-vote-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  justify-content: start;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 250px;
+  background: #111111;
+  padding-top: 30px;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right #proposal-detail-vote-wrapper .proposal-status {
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right #proposal-detail-vote-wrapper .proposal-status.ONGOING {
+  color: #F3BE2E;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right #proposal-detail-vote-wrapper .proposal-status.REFUSED {
+  color: #4B4B4B;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right #proposal-detail-vote-wrapper .proposal-status.PASS {
+  color: #A0A0A0;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right #proposal-detail-vote-wrapper .vote-info {
+  font-size: 16px;
+  color: #A0A0A0;
+  margin-bottom: 10px;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right #proposal-detail-vote-wrapper #proposal-datail-vote-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 220px;
+  margin-top: 20px;
+}
+main #layer-proposal-detail #proposal-detail-wrapper #proposal-detail-right #proposal-detail-vote-wrapper #proposal-datail-vote-button-wrapper div {
+  cursor: pointer;
+  width: 105px;
+  height: 40px;
+  border-radius: 10px;
+  background: #F3BE2E;
+  line-height: 40px;
+  text-align: center;
+}
+
+/*# sourceMappingURL=style.css.map */

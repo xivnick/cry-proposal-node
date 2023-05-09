@@ -1,0 +1,5 @@
+node_modules/
+db_config.json
+web3_config.json
+secret.json
+.DS_Store

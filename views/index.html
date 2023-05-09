@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- meta data -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- title -->
+	<title>Crazy rich yellows Proposal</title>
+
+	<!-- opengraph -->
+	<meta property="og:title" content="Crazy Rich Yellows">
+	<meta property="og:description" content="Crazy Rich Yellows Proposal Website">
+	<meta property="og:image" content="https://proposal.crazyrichyellows.com/img/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://proposal.crazyrichyellows.com">
+
+	<!-- font -->
+	<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-std.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com"> 
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400&display=swap" rel="stylesheet">
+
+	<!-- vue, axios, web3 -->
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- js -->
+	<script defer src="/js/script.js"></script>
+</head>
+<body>
+	<div id="app">
+		<header>
+			<div id="header-default-wrapper">
+				<div id="logo">
+					<a href="/"><img id="logo-image" src="img/logo.png"/></a>
+				</div>
+				<div id="wallet-wrapper">
+					<template v-if="connected">
+						<div id="wallet-random-color" :style="{background: random_color}"></div>
+						<span id="wallet-address">
+							{{compressed_address}}
+						</span>
+					</template>
+					<template v-else>
+						<div id="wallet-button" @click="connect">
+						 	Connect Wallet
+						</div>
+					</template>
+				</div>
+				<!-- <div id="flag-wrapper">
+					<img id="flag-eng" class="flag" 
+						 src="img/flag-eng.png"
+						 @click="change_lang('eng')"/>
+					<img id="flag-kor" class="flag" 
+						 src="img/flag-kor.png"
+						 @click="change_lang('kor')" />
+				</div> -->
+			</div>
+			<template v-if="extended">
+				<div id="header-wallet-data-wrapper">
+					<p id="total-votes">Total Votes : {{totalVotes}}</p>
+					<div id="create-proposal-button" 
+						 :class="{yellow: totalVotes>=9}"
+						 @click="openCreateProposal"
+					>Creating a Proposal</div>
+				</div>
+			</template>
+		</header>
+		<div id="background-wrapper">
+			<div id="background"></div>
+			<div id="background-cover"></div>
+		</div>
+		<main :class="{extended: extended}">
+			<template v-if="!layer || layer === 'main'">
+				<div id="layer-main">
+					<div id="proposal-wrapper">
+						<template v-for="(proposal, idx) in proposals">
+							<div class="proposal" 
+								 :class="proposal.status"
+								 @click="openProposal(proposal.id)"
+							>
+								<template v-if="proposal.status === 'ONGOING'">
+									<div class="proposal-dday" :class="{yellow: proposal.is_dday}">
+										{{proposal.dday}}
+									</div>
+								</template>
+								<template v-else>
+									<div class="proposal-dday-closed">
+										closed
+									</div>
+								</template>
+								<span class="proposal-status" :class="proposal.status">
+									{{proposal.status}}
+								</span>
+								<span class="proposal-title">
+									<template v-if="proposal.yellow_man">
+										<span class="font-yellow">[Yellow Man]&nbsp;</span>	
+									</template>
+									{{proposal.title}}
+								</span>
+								<span class="proposal-schedule">
+									{{proposal.schedule}}
+								</span>
+							</div>
+						</template>
+					</div>
+				</div>
+			</template>
+			<template v-if="layer === 'create-proposal'">
+				<div id="layer-create-proposal">
+					<div id="create-proposal-wrapper">
+						<h1>Creating a Proposal</h1>
+						<img class="close-button" 
+							 src="img/button-x.png"
+							 @click="layer=null"/>
+						<input id="title" v-model="title" placeholder="Title" />
+						<input id="deadline" v-model="end_date" type="date"/>
+						<textarea id="content" v-model="content" placeholder="content"></textarea>
+						<span id="create-proposal-address">{{compressed_address}}</span>
+						<button id="submit-proposal-button" @click="submit">Submit the Proposal</button>
+					</div>
+				</div>
+			</template>
+			<template v-if="layer === 'proposal-detail'">
+				<div id="layer-proposal-detail">
+					<div id="proposal-detail-wrapper">
+						<div id="proposal-detail-left">
+							<div id="proposal-detail-title-wrapper">
+								<h1>{{proposal.title}}</h1>
+								<span id="proposal-detail-address">{{proposal.address}}</span>
+								<span id="proposal-detail-schedule">{{proposal.schedule}}</span>
+							</div>
+							<span id="proposal-detail-text">{{proposal.content}}</span>
+						</div>
+						<div id="proposal-detail-right">
+							<img class="close-button" 
+								 src="img/button-x.png"
+								 @click="layer=null"/>
+							<div class="percent-wrapper">
+								<span>Agree</span>
+								<span>{{proposal.agree_percent}}</span>
+							</div>
+							<div class="percent-bar-wrapper">
+								<div :style="{width: proposal.agree_percent, background:'#F3BE2E'}"></div>
+							</div>
+							<div class="percent-wrapper">
+								<span>Disagree</span>
+								<span>{{proposal.disagree_percent}}</span>
+							</div>
+							<div class="percent-bar-wrapper">
+								<div :style="{width: proposal.disagree_percent, background: '#757575'}"></div>
+							</div>
+							<div id="proposal-detail-vote-wrapper">
+								<span class="proposal-status" :class="proposal.status">
+									{{proposal.status}}
+								</span>
+								<span class="vote-info">Total Votes : {{totalVotes}}</span>
+								<span class="vote-info">Used Votes : {{usedVotes}}</span>
+								<template v-if="connected && proposal.status === 'ONGOING'">
+									<div id="proposal-datail-vote-button-wrapper">
+										<div @click="vote(1)">Agree</div>
+										<div @click="vote(0)">Disagree</div>
+									</div>
+								</template>
+							</div>
+						</div>
+					</div>
+				</div>
+			</template>
+		</main>
+	</div>
+
+</body>
+</html>
